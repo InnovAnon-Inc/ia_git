@@ -2,11 +2,6 @@
 # cython: language_level=3
 # distutils: language=c++
 
-""" Create Repo """
-
-from .main import main
-
-if __name__ == '__main__':
-	main()
+""" Purge Repo """
 
 __author__:str = 'you.com' # NOQA
