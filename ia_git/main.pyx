@@ -132,8 +132,11 @@ def main()->None:
 	#	logger.info('origin pulled')
 	#except GitCommandError as error:
 	#	logger.exception(error)
-	result:str = local_repo.git.pull('--set-upstream', origin, local_repo.head.ref,)
-	logger.info('origin pulled: %s', result,)
+	try:
+		result:str = local_repo.git.pull('--set-upstream', origin, local_repo.head.ref,)
+		logger.info('origin pulled: %s', result,)
+	except GitCommandError as error:
+		logger.exception(error)
 
 	#origin.push().raise_if_error()
 	result:str = local_repo.git.push('--set-upstream', origin, local_repo.head.ref,)
