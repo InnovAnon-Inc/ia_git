@@ -114,10 +114,10 @@ def main()->None:
 	origin.fetch()
 	logger.info('origin fetched')
 
-	if ('master' not in local_repo.heads):
-		local_repo.heads.master.set_tracking_branch(origin.refs.master)
+	if ('main' not in local_repo.heads):
+		local_repo.heads.main.set_tracking_branch(origin.refs.main)
 		logger.info('setup tracking')
-	assert ('master' in local_repo.heads)
+	assert ('main' in local_repo.heads)
 
 	#try:
 	#	origin.pull()
