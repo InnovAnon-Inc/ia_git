@@ -72,7 +72,6 @@ def ensure_origin(repo:Repo, url:str,):
 	assert ('origin' not in repo.remotes)
 	origin = repo.create_remote('origin', url,)
 	logger.info('created new origin: %s', origin,)
-	repo.heads.master.set_tracking_branch(origin.refs.master)
 	return origin
 
 def main()->None:
@@ -114,7 +113,12 @@ def main()->None:
 
 	origin.fetch()
 	logger.info('origin fetched')
-	
+
+	if ('master' not in local_repo.heads):
+		local_repo.heads.master.set_tracking_branch(origin.refs.master)
+		logger.info('setup tracking')
+	assert ('master' in local_repo.heads)
+
 	#try:
 	#	origin.pull()
 	#	logger.info('origin pulled')
