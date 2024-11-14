@@ -1,0 +1,5 @@
+GitPython
+PyGithub
+python-dotenv
+#rich
+structlog
