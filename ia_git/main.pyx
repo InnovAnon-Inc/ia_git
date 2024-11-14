@@ -75,6 +75,7 @@ def ensure_origin(repo:Repo, url:str,):
 def main()->None:
 	assert Path('.env').is_file()
 	dotenv.load_dotenv()
+	assert ('GITHUB_TOKEN' in os.environ)
 
 	local_repo:Repo = ensure_local_repo()
 	assert (not local_repo.bare)
