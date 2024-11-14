@@ -73,6 +73,7 @@ def ensure_origin(repo:Repo, url:str,):
 	return origin
 
 def main()->None:
+	assert Path('.env').is_file()
 	dotenv.load_dotenv()
 
 	local_repo:Repo = ensure_local_repo()
