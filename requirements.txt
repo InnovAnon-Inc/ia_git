@@ -1,5 +1,3 @@
-GitPython
-PyGithub
-python-dotenv
+git-filter-repo
 #rich
 structlog
