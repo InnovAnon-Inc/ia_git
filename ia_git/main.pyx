@@ -114,18 +114,20 @@ def main()->None:
 	origin.fetch()
 	logger.info('origin fetched')
 
-	#if ('main' not in local_repo.heads):
-	#local_repo.heads.main.set_tracking_branch(origin.refs.main)
-	#local_repo.heads['main'].set_tracking_branch(origin.refs.main)
-	#logger.info('setup tracking')
-	#assert ('main' in local_repo.heads)
+	if ('main' not in local_repo.heads):
+		#local_repo.heads.main.set_tracking_branch(origin.refs.main)
+		#local_repo.heads['main'].set_tracking_branch(origin.refs.main)
+		local_repo.create_head('main, origin.refs.main)
+		logger.info('setup tracking')
+	assert ('main' in local_repo.heads)
 
-	try:
-		#origin.pull()
-		local_repo.git.pull()
-		logger.info('origin pulled')
-	except GitCommandError as error:
-		logger.exception(error)
+	origin.pull()
+	#try:
+	#	#origin.pull()
+	#	local_repo.git.pull()
+	#	logger.info('origin pulled')
+	#except GitCommandError as error:
+	#	logger.exception(error)
 
 	origin.push().raise_if_error()
 	logger.info('origin pushed')
