@@ -2,6 +2,6 @@
 # cython: language_level=3
 # distutils: language=c++
 
-""" Create Repo """
+""" Purge Repo """
 
 __author__:str = 'you.com' # NOQA
