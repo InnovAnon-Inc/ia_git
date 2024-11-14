@@ -12,6 +12,7 @@ from typing                                  import ParamSpec
 
 import dotenv
 from git                                     import Repo
+from git                                     import RemoteReference
 from git.exc                                 import GitCommandError
 from git.exc                                 import InvalidGitRepositoryError
 from github                                  import Github
@@ -119,10 +120,10 @@ def main()->None:
 		#local_repo.heads['main'].set_tracking_branch(origin.refs.main)
 		#local_repo.create_head('main', origin.refs.main)
 		local_repo.create_head('main', origin.refs['main'])
-	#rem_ref:RemoteReference = RemoteReference(local_repo, 'refs/remotes/origin/main')
-	#local_repo.head.reference.set_tracking_branch(rem_ref)
-	#logger.info('setup tracking')
-	#assert ('main' in local_repo.heads)
+		rem_ref:RemoteReference = RemoteReference(local_repo, 'refs/remotes/origin/main')
+		local_repo.head.reference.set_tracking_branch(rem_ref)
+		logger.info('setup tracking')
+	assert ('main' in local_repo.heads)
 
 	#try:
 	#	origin.pull()
