@@ -132,11 +132,12 @@ def main()->None:
 	#	logger.info('origin pulled')
 	#except GitCommandError as error:
 	#	logger.exception(error)
-	local_repo.git.pull('--set-upstream', origin, local_repo.head.ref,)
+	result:str = local_repo.git.pull('--set-upstream', origin, local_repo.head.ref,)
+	logger.info('origin pulled: %s', result,)
 
 	#origin.push().raise_if_error()
-	local_repo.git.push('--set-upstream', origin, local_repo.head.ref,).raise_if_error()
-	logger.info('origin pushed')
+	result:str = local_repo.git.push('--set-upstream', origin, local_repo.head.ref,)
+	logger.info('origin pushed: %s', result,)
 
 if __name__ == '__main__':
 	main()
