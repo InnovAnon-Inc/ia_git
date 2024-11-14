@@ -16,8 +16,6 @@ from git.exc                                 import InvalidGitRepositoryError
 from github                                  import Github
 from structlog                               import get_logger
 
-
-
 P     :ParamSpec = ParamSpec('P')
 logger           = get_logger()
 
@@ -64,6 +62,12 @@ def ensure_remote_repo(token:str, org:str, name:str,)->Repo:
 	logger.info('created remote repo: %s', remote_repo,)
 	return remote_repo
 
+def ensure_origin(repo:Repo, url:str,):
+	if ('origin' in repo.remotes):
+		return repo.remotes['origin']
+	assert ('origin' not in repo.remotes)
+	return repo.create_remote('origin', url,)
+
 def main()->None:
 	dotenv.load_dotenv()
 
@@ -83,11 +87,19 @@ def main()->None:
 
 	remote_repo:Repo = ensure_remote_repo(token=token, org=org, name=name,)
 
+	message:str = os.getenv('GITHUB_COMMIT_MESSAGE', 'Initial Commit')
+	assert message
+
+	url:str = str(f'https://github.com/{org}/{name}.git')
+	assert url
+
 	index = local_repo.index
 	index.add(local_repo.untracked_files)
-	index.commit()
-	local_repo.remotes.origin.pull()
-	local_repo.remotes.origin.push().raise_if_error()
+	index.commit(message,)
+
+	origin = ensure_origin(repo=local_repo, url=url,)
+	origin.pull() #.raise_if_error()
+	origin.push().raise_if_error()
 
 if __name__ == '__main__':
 	main()
