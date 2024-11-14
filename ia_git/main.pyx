@@ -109,11 +109,14 @@ def main()->None:
 	origin = ensure_origin(repo=local_repo, url=url,)
 	assert origin.exists()
 
-	#origin.fetch()
-	#logger.info('origin fetched')
-	#
-	#origin.pull()
-	#logger.info('origin pulled')
+	origin.fetch()
+	logger.info('origin fetched')
+	
+	try:
+		origin.pull()
+		logger.info('origin pulled')
+	except GitCommandError as error:
+		logger.exception(error)
 
 	origin.push().raise_if_error()
 	logger.info('origin pushed')
