@@ -118,19 +118,21 @@ def main()->None:
 	#local_repo.heads.main.set_tracking_branch(origin.refs.main)
 	#local_repo.heads['main'].set_tracking_branch(origin.refs.main)
 	local_repo.create_head('main', origin.refs.master)
-	rem_ref:RemoteReference = RemoteReference(local_repo, f'refs/remotes/{...}/{...}')
+	rem_ref:RemoteReference = RemoteReference(local_repo, 'refs/remotes/origin/main')
 	local_repo.head.reference.set_tracking_branch(rem_ref)
 	logger.info('setup tracking')
 	#assert ('main' in local_repo.heads)
 
-	origin.pull()
 	#try:
+	#	origin.pull()
 	#	local_repo.git.pull()
 	#	logger.info('origin pulled')
 	#except GitCommandError as error:
 	#	logger.exception(error)
+	local_repo.git.pull('--set-upstream', origin, local_repo.head.ref,)
 
-	origin.push().raise_if_error()
+	#origin.push().raise_if_error()
+	local_repo.git.push('--set-upstream', origin, local_repo.head.ref,).raise_if_error()
 	logger.info('origin pushed')
 
 if __name__ == '__main__':
