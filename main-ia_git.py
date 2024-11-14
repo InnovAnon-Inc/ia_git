@@ -4,7 +4,7 @@
 
 """ pip """
 
-from ia_shit.main import main
+from ia_git.main import main
 
 if __name__ == '__main__':
 	main()

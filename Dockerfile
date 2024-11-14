@@ -7,5 +7,5 @@ RUN apt update                   \
 
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
-RUN pip install --no-cache-dir --upgrade ia_shit
-ENTRYPOINT ["python", "-m", "ia_shit"]
+RUN pip install --no-cache-dir --upgrade ia_git
+ENTRYPOINT ["python", "-m", "ia_git"]
