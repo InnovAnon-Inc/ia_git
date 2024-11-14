@@ -117,7 +117,7 @@ def main()->None:
 	#if ('main' not in local_repo.heads):
 	#local_repo.heads.main.set_tracking_branch(origin.refs.main)
 	#local_repo.heads['main'].set_tracking_branch(origin.refs.main)
-	local_repo.create_head('main', origin.refs.master)
+	local_repo.create_head('main', origin.refs.main)
 	rem_ref:RemoteReference = RemoteReference(local_repo, 'refs/remotes/origin/main')
 	local_repo.head.reference.set_tracking_branch(rem_ref)
 	logger.info('setup tracking')
