@@ -2,9 +2,9 @@
 # cython: language_level=3
 # distutils: language=c++
 
-""" pip """
+""" Purge Repo """
 
-from ia_git.main import main
+from .main import main
 
 if __name__ == '__main__':
 	main()
