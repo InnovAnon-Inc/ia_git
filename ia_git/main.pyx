@@ -64,9 +64,13 @@ def ensure_remote_repo(token:str, org:str, name:str,)->Repo:
 
 def ensure_origin(repo:Repo, url:str,):
 	if ('origin' in repo.remotes):
-		return repo.remotes['origin']
+		origin = repo.remotes['origin']
+		logger.info('origin found: %s', origin,)
+		return origin
 	assert ('origin' not in repo.remotes)
-	return repo.create_remote('origin', url,)
+	origin = repo.create_remote('origin', url,)
+	logger.info('created new origin: %s', origin,)
+	return origin
 
 def main()->None:
 	dotenv.load_dotenv()
@@ -89,17 +93,32 @@ def main()->None:
 
 	message:str = os.getenv('GITHUB_COMMIT_MESSAGE', 'Initial Commit')
 	assert message
+	logger.info('message     : %s', message,)
 
 	url:str = str(f'https://github.com/{org}/{name}.git')
 	assert url
+	logger.info('url         : %s', url,)
 
 	index = local_repo.index
-	index.add(local_repo.untracked_files)
-	index.commit(message,)
+	# TODO add/commit everything
+	#untracked_files:List = local_repo.untracked_files
+	#if untracked_files:
+	#	logger.info('untracked files: %s', untracked_files,)
+	#else:
+	#	logger.info('no untracked files')
+	#index.add(untracked_files)
+	#index.commit(message,)
+	local_repo.git.add(all=True,)
+	local_repo.index.commit(message,)
 
 	origin = ensure_origin(repo=local_repo, url=url,)
+	assert origin.exists()
+	# TODO push upstream
 	origin.pull() #.raise_if_error()
 	origin.push().raise_if_error()
+
+	local_repo.pull().raise_if_error()
+	local_repo.push().raise_if_error()
 
 if __name__ == '__main__':
 	main()
