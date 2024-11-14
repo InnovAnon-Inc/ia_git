@@ -73,7 +73,7 @@ def ensure_origin(repo:Repo, url:str,):
 	origin = repo.create_remote('origin', url,)
 	logger.info('created new origin: %s', origin,)
 
-	local_repo.create_head('main', origin.refs.main) # testing
+	repo.create_head('main', origin.refs.main) # testing
 
 	return origin
 
