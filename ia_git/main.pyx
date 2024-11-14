@@ -66,8 +66,8 @@ def ensure_origin(repo:Repo, url:str,):
 	if ('origin' in repo.remotes):
 		origin = repo.remotes['origin']
 		logger.info('origin found: %s', origin,)
-		origin.pull(verbose=True,) # TODO
-		logger.info('origin pulled')
+		#origin.pull() # TODO
+		#logger.info('origin pulled')
 		return origin
 	assert ('origin' not in repo.remotes)
 	origin = repo.create_remote('origin', url,)
