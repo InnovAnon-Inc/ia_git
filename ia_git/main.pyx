@@ -120,12 +120,12 @@ def main()->None:
 	#logger.info('setup tracking')
 	#assert ('main' in local_repo.heads)
 
-	#try:
-	#	#origin.pull()
-	#	logger.info('origin pulled')
-	#except GitCommandError as error:
-	#	logger.exception(error)
-	local_repo.git.pull()
+	try:
+		#origin.pull()
+		local_repo.git.pull()
+		logger.info('origin pulled')
+	except GitCommandError as error:
+		logger.exception(error)
 
 	origin.push().raise_if_error()
 	logger.info('origin pushed')
