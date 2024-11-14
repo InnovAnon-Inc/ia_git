@@ -2,7 +2,7 @@
 # cython: language_level=3
 # distutils: language=c++
 
-""" Purge Repo """
+""" Create Repo """
 
 from .main import main
 
