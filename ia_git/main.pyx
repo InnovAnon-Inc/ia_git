@@ -99,26 +99,13 @@ def main()->None:
 	assert url
 	logger.info('url         : %s', url,)
 
-	index = local_repo.index
-	# TODO add/commit everything
-	#untracked_files:List = local_repo.untracked_files
-	#if untracked_files:
-	#	logger.info('untracked files: %s', untracked_files,)
-	#else:
-	#	logger.info('no untracked files')
-	#index.add(untracked_files)
-	#index.commit(message,)
 	local_repo.git.add(all=True,)
 	local_repo.index.commit(message,)
 
 	origin = ensure_origin(repo=local_repo, url=url,)
 	assert origin.exists()
-	# TODO push upstream
-	origin.pull() #.raise_if_error()
+	origin.pull().raise_if_error()
 	origin.push().raise_if_error()
-
-	local_repo.pull().raise_if_error()
-	local_repo.push().raise_if_error()
 
 if __name__ == '__main__':
 	main()
