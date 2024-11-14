@@ -118,6 +118,8 @@ def main()->None:
 	#local_repo.heads.main.set_tracking_branch(origin.refs.main)
 	#local_repo.heads['main'].set_tracking_branch(origin.refs.main)
 	local_repo.create_head('main', origin.refs.master)
+	rem_ref:RemoteReference = RemoteReference(local_repo, f'refs/remotes/{...}/{...}')
+	local_repo.head.reference.set_tracking_branch(rem_ref)
 	logger.info('setup tracking')
 	#assert ('main' in local_repo.heads)
 
