@@ -12,6 +12,7 @@ from typing                                  import ParamSpec
 
 import dotenv
 from git                                     import Repo
+from git.exc                                 import GitCommandError
 from git.exc                                 import InvalidGitRepositoryError
 from github                                  import Github
 from structlog                               import get_logger
