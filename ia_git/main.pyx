@@ -101,6 +101,7 @@ def main()->None:
 
 	local_repo.git.add(all=True,)
 	local_repo.index.commit(message,)
+	logger.info('committed')
 
 	origin = ensure_origin(repo=local_repo, url=url,)
 	assert origin.exists()
