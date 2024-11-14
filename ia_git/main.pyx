@@ -72,6 +72,7 @@ def ensure_origin(repo:Repo, url:str,):
 	assert ('origin' not in repo.remotes)
 	origin = repo.create_remote('origin', url,)
 	logger.info('created new origin: %s', origin,)
+	repo.heads.master.set_tracking_branch(origin.refs.master)
 	return origin
 
 def main()->None:
