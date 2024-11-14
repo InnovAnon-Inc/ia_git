@@ -113,11 +113,12 @@ def main()->None:
 	origin.fetch()
 	logger.info('origin fetched')
 	
-	try:
-		origin.pull()
-		logger.info('origin pulled')
-	except GitCommandError as error:
-		logger.exception(error)
+	#try:
+	#	origin.pull()
+	#	logger.info('origin pulled')
+	#except GitCommandError as error:
+	#	logger.exception(error)
+	local_repo.git.pull()
 
 	origin.push().raise_if_error()
 	logger.info('origin pushed')
