@@ -104,7 +104,7 @@ def main()->None:
 
 	origin = ensure_origin(repo=local_repo, url=url,)
 	assert origin.exists()
-	origin.pull().raise_if_error()
+	origin.pull()
 	origin.push().raise_if_error()
 
 if __name__ == '__main__':
