@@ -5,9 +5,9 @@ services:
       context:        .
       tags:
         - innovanon/ia_git:latest
-        -           ia_git:latest
-        - innovanon/ia_git
-        -           ia_git
+    #    -           ia_git:latest
+    #    - innovanon/ia_git
+    #    -           ia_git
     image:            innovanon/ia_git
     restart:          no
     logging:

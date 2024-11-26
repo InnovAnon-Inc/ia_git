@@ -1,5 +1,5 @@
-#FROM innovanon/ia_setup AS setup
-FROM ia_setup AS setup
+FROM innovanon/ia_setup AS setup
+#FROM ia_setup AS setup
 COPY ./ ./
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 RUN pip install --no-cache-dir --upgrade .
