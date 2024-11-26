@@ -8,6 +8,7 @@ services:
         -           ia_git:latest
         - innovanon/ia_git
         -           ia_git
+    image:            innovanon/ia_git
     restart:          no
     logging:
       driver:         syslog   
